@@ -3,4 +3,5 @@ numpy
 plotly
 pandas
 dash-bootstrap-components
+dash-spinner
 gunicorn
