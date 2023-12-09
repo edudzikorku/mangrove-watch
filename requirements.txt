@@ -2,4 +2,5 @@ dash
 numpy
 plotly
 pandas
+dash-bootstrap-components
 gunicorn
