@@ -1,0 +1,155 @@
+/* Custom fonts
+/* Import Roboto font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Import Montserrat font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+ */
+
+
+.local-nav-items {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 16px !important;
+    color: white !important;
+}
+.local-nav-items:hover {
+    text-decoration: underline !important;
+    transform: scale(1.05) !important;
+    color: white !important;
+    font-weight: bold;
+}
+#nav-items:active {
+    background-color: yellow !important;
+}
+.dropdown-item-year {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    margin-top: 5px;
+    background-color: white
+}
+.dropdown-item-year:hover {
+    text-decoration: underline;
+}
+/* Main container for the watcher */
+.watcher {
+    font-family: 'Roboto', sans-serif;
+    justify-content: center;
+    color: #226f54;
+    font-weight: bold;
+    margin-top: 8px;
+    font-size: 40px;
+}
+
+.logo {
+    animation: spin 5s linear infinite;
+    text-align: center;
+    margin-top: 8px;
+}
+.home-rows, .mangrove-graph-component {
+    padding-top: 4px;
+    display: flex;
+    flex-direction: row;
+    padding-left: 30px;
+    padding-right: 30PX;
+    margin: 5px 5px 5px 5px;
+}
+.home-rows {
+    background-image: url('mangrove-2.png');
+}
+.mangrove-graph-component{
+    height: 100vh;
+}
+.figure-desc {
+    font-style: italic;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+/* ****************************Media Queries*************************************** */
+
+@media screen and (max-width: 1000px) {
+    .logo {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .logo, .mangrove-graph-component {
+        display: none !important;
+    }
+    body {
+        margin: 0 !important;
+        font-size: .875rem !important;
+    }
+    p.lead {
+            margin: 0 !important;
+            font-size: .875rem !important;
+    }
+
+    #flex-container {
+        width: 100%;
+    }
+
+    div#flex-card-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .flex-card {
+        width: 80%;
+    }
+
+    div.flex-card-header {
+        text-align: center;
+        padding: 10px 10px;
+    }
+    
+
+    div.flex-card-body .btn {
+        margin-top: 10px;
+        padding: 5px 5px;
+    }
+
+    #learn_more {
+        max-width: .874rm;
+    }
+   
+    #learn_more, div.flex-card-body .btn {
+        padding: 10px 10px;
+        text-align: center;
+        font-size: .765rem;
+    }
+    
+}
+
+
+/* Footer  */
+.footers {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #3e5c76!important;  /* Adjust the background color as needed */
+    padding: 10px;
+    display: flex;
+    flex-direction: column !important;
+    /* align-items: center; */
+}
+
+.git:hover {
+    transform: scale(1.2) ;
+}
+ .git {
+    display: flex;
+    flex-direction: row !important;
+    margin-top: 5px;
+    margin-left: 2%;
+}
+.rights {
+    margin-right: 5px !important;
+    margin-top: 5px;
+
+}
+
+#base-map {
+    height: 80vh;
+}
