@@ -1,4 +1,12 @@
 dash
 numpy
+rtree
+fiona
 plotly
 pandas
+pyproj
+shapely
+gunicorn
+geopandas
+dash-spinner
+dash-bootstrap-components
