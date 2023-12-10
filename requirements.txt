@@ -10,5 +10,4 @@ gunicorn
 geopandas
 dash-spinner
 dash-bootstrap-components
-dash-spinner
 
