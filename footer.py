@@ -15,7 +15,7 @@ footer = dbc.Row(
                             ], href="https://henmpoano.org/", target='_blank')], width = 1, className = "git", id='hen-mpoano-logo'),
                    dbc.Col([html.A([
                         html.Img(src = "assets/github-seeklogo.com.svg", height='30px', width = '30px'),
-                            ], href="https://github.com/edudzikorku", target='_blank')], width = 1, className = "git"),
+                            ], href="https://github.com/edudzikorku", target='_blank')], width = 1, className = "git", id='git-logo'),
                    dbc.Col([html.A([
                         html.Img(src = "assets/earthengine.png", height='30px', width='30px'),
                             ], href="https://earthengine.google.com/", target='_blank')], className = "git", width=1), 
