@@ -45,13 +45,13 @@
     text-align: center;
     margin-top: 8px;
 }
-.home-rows, .mangrove-graph-component {
-    padding-top: 4px;
-    display: flex;
-    flex-direction: row;
-    padding-left: 30px;
-    padding-right: 30PX;
-    margin: 5px 5px 5px 5px;
+.home-rows, .mangrove-graph-component, .d-flex-flex-row-reverse {
+    padding-top: 4px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    padding-left: 30px !important;
+    padding-right: 30PX !important;
+    margin: 5px 5px 5px 5px !important;
 }
 .home-rows {
     background-image: url('mangrove-2.png');
@@ -65,6 +65,10 @@
     font-size: 12px;
 }
 
+   #earth-engine-logo:hover{
+    transform: scale(1) !important;
+   }
+
 
 /* Footer  */
 .footers {
@@ -77,8 +81,8 @@
     /* align-items: center; */
 }
 
-.git:hover {
-    transform: scale(1.2) ;
+.d-flex-align-items-stretch-git:hover {
+    transform: scale(1.2) !important;
 }
  .git {
     display: flex;
@@ -98,7 +102,12 @@
 /* ****************************Media Queries*************************************** */
 
 @media screen and (max-width: 1526px) {}
-@media screen and (max-width: 1280px) {}
+@media screen and (max-width: 1280px) {
+    .local-nav-items {
+        display: flex  !important;
+        flex-direction: column !important;
+    }
+}
 @media screen and (max-width: 1024px) {}
 @media screen and (max-width: 921px) {
     .mangrove-graph-component, .figure-desc {
@@ -115,6 +124,8 @@
     #git-logo {
         padding-left: 5% !important;
     }
+    
+   
 }
 @media screen and (max-width: 768px) {
     .mangrove-graph-component, .figure-desc {
@@ -128,6 +139,11 @@
     #git-logo {
         padding-left: 5% !important;
     }
+    .local-nav-items {
+        display: flex;
+        flex-direction: row;
+        font-size: 50%;
+    }
 }
 @media screen and (max-width: 640px) {
     .logo, .mangrove-graph-component, .figure-desc {
@@ -135,9 +151,11 @@
     }
 
     .home-rows {
-        display: flex;
-        flex-direction: column;
-        font-size: .875rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        font-size: 2px !important;
+        background-image: url('mangrove_1.png');
+        transform: translateY(-2.1rem) !important;
     }
 
     .git{
@@ -145,6 +163,14 @@
         flex-direction: row !important;
         width: 50% !important;
         align-items: center !important;
+    }
+
+    #row-3 {
+        /* display: flex !important;
+        flex-direction: column !important;
+        font-size: 2px !important;
+        background-image: url('mangrove_1.png'); */
+        transform: translateY(-2.1rem) !important;
     }
 }
 @media screen and (max-width: 457px) {}

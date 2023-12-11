@@ -10,19 +10,19 @@ from dash import Dash, html, dash_table, dcc, callback
 
 footer = dbc.Row(
                children = [
-                    dbc.Col([html.A([
+                    dbc.Col(html.Div([html.A([
                         html.Img(src = "assets/hen-mpoano.png", height='30px', width='90px'),
-                            ], href="https://henmpoano.org/", target='_blank')], width = 1, className = "git", id='hen-mpoano-logo'),
-                   dbc.Col([html.A([
+                            ], href="https://henmpoano.org/", target='_blank')], id='hen-mpoano-logo'), className = "d-flex align-items-stretch git"),
+                   dbc.Col(html.Div([html.A([
                         html.Img(src = "assets/github-seeklogo.com.svg", height='30px', width = '30px'),
-                            ], href="https://github.com/edudzikorku", target='_blank')], width = 1, className = "git", id='git-logo'),
-                   dbc.Col([html.A([
+                            ], href="https://github.com/edudzikorku", target='_blank')], id='git-logo'), className = "d-flex align-items-stretch git"),
+                   dbc.Col(html.Div([html.A([
                         html.Img(src = "assets/earthengine.png", height='30px', width='30px'),
-                            ], href="https://earthengine.google.com/", target='_blank')], className = "git", width=1), 
-                   dbc.Col([html.P('© 2023 Mangrove Watcher. All rights reserved.')], width = 8, className = 'rights'),
-                   dbc.Col([]),
-                   dbc.Col([]),
-                   dbc.Col([]),
-                   dbc.Col([]),
+                            ], href="https://earthengine.google.com/", target='_blank', id = 'earth-engine-logo')]), className = "d-flex align-items-stretch git"), 
+                   dbc.Col(html.Div([html.P('© 2023 Mangrove Watcher. All rights reserved.')]), className = "d-flex justify-content-around"),
+                #    dbc.Col([]),
+                #    dbc.Col([]),
+                #    dbc.Col([]),
+                #    dbc.Col([]),
                ]
            )

@@ -3,6 +3,7 @@
 import dash
 import time
 import pandas as pd
+import dash_leaflet as dl
 import plotly.express as px
 import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
@@ -104,7 +105,7 @@ def display_page(pathname):
                         that rely on these ecosystems for sustenance, livelihoods, and protection against natural hazards. Urgent attention is 
                         required to address this multifaceted challenge, safeguarding not only the biodiversity and resilience of mangrove 
                         ecosystems but also the well-being of the communities intricately linked to their existence.""",
-                     style = text_style
+                     style = text_style, id = 'row-1'
                     ),   
                     html.Br(),
                     html.Br(),
@@ -120,7 +121,7 @@ def display_page(pathname):
                                             above-ground biomass (AGB) with unprecedented 
                                             accuracy. Numerous studies have explored this intersection, leveraging datasets from platforms like Landsat and Sentinel-2, 
                                             and employing algorithms such as Random Forest (RF), Extreme Gradient Boosting (XGBoost), and Support Vector Regression (SVR).""", 
-                                            style = text_style),
+                                            style = text_style, id = 'row-2'),
                                         html.Div("""
                                             This project employs Remote Sensing and Machine Learning to address urgent mangrove degradation. Focusing on 
                                             AGB, it integrates advanced technologies like Landsat imagery and SAR data with field inventory. The aim is 
@@ -129,7 +130,7 @@ def display_page(pathname):
                                             project accurately estimates AGB, carbon stock, and carbon sequestration potential of mangroves. 
                                             This information is crucial for identifying and addressing degradation, ultimately safeguarding the well-being 
                                             of communities reliant on these essential coastal ecosystems.""",
-                                            style = text_style),
+                                            style = text_style, id = 'row-3'),
                                         
                                             
                                     ]
