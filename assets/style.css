@@ -170,7 +170,7 @@
         flex-direction: column !important;
         font-size: 2px !important;
         background-image: url('mangrove_1.png'); */
-        transform: translateY(-2.1rem) !important;
+        /* transform: translateY(-2.1rem) !important; */
     }
 }
 @media screen and (max-width: 457px) {}
