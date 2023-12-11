@@ -8,5 +8,6 @@ pyproj
 shapely
 gunicorn
 geopandas
+dash-leaflet
 dash-spinner
 dash-bootstrap-components
