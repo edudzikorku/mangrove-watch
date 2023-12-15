@@ -12,7 +12,7 @@
     font-size: 16px !important;
     color: white !important;
 }
-.local-nav-items:hover {
+.nav-link:hover {
     text-decoration: underline !important;
     transform: scale(1.05) !important;
     color: white !important;
@@ -55,6 +55,11 @@
 }
 .home-rows {
     background-image: url('mangrove-2.png');
+    text-align: justify;
+}
+
+.home-rows a {
+    color: #70a9a1;
 }
 .mangrove-graph-component{
     height: 100vh;
@@ -84,7 +89,7 @@
 .d-flex-align-items-stretch-git:hover {
     transform: scale(1.2) !important;
 }
- .git {
+.git {
     display: flex;
     flex-direction: row !important;
     margin-top: 5px;
@@ -96,9 +101,49 @@
 
 }
 
-#base-map {
+#biomass-map {
     height: 80vh;
+    padding-left: 30px !important;
+    padding-right: 30PX !important;
+    margin: 5px 5px 5px 5px !important;
 }
+.dropdown-list {
+    font-size: 15px;
+    color: #ee6c4d;
+    font-weight: bold;
+    padding-left: 30px !important;
+    justify-content: center;
+    margin-top: 2px;
+    font-family: 'Roboto', sans-serif;   
+    word-break: normal;
+    
+}
+
+.has-value.Select--single > .Select-control .Select-value .Select-value-label,
+.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+    color: white !important;
+    cursor: pointer;
+    text-align: left;
+}
+
+.Select--single > .Select-control .Select-value, .Select-placeholder {
+    border: 1px solid gray;
+    border-radius: 4px;
+    color: white;
+    background-color: #335476;
+    cursor: pointer;
+}
+
+.year-info {
+    font-family: 'Roboto', sans-serif;  
+    margin-left: 82%;
+    font-size: 15px;
+}
+
+.abg-map {
+    background-image: url('mangrove-5.png');
+}
+
 /* ****************************Media Queries*************************************** */
 
 @media screen and (max-width: 1526px) {}
@@ -149,13 +194,19 @@
     .logo, .mangrove-graph-component, .figure-desc {
         display: none !important;
     }
+    /* span.navbar-toggler-icon, .nav-link {
+        align-items: center;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    } */
 
     .home-rows {
         display: flex !important;
         flex-direction: column !important;
-        font-size: 2px !important;
         background-image: url('mangrove_1.png');
-        /* transform: translateY(-2.1rem) !important; */
+        font-size: 100%;
+
     }
 
     .git{
@@ -164,63 +215,5 @@
         width: 50% !important;
         align-items: center !important;
     }
-
-    #row-3 {
-        /* display: flex !important;
-        flex-direction: column !important;
-        font-size: 2px !important;
-        background-image: url('mangrove_1.png'); */
-        /* transform: translateY(-2.1rem) !important; */
-    }
-}
-@media screen and (max-width: 457px) {}
-
-@media screen and (max-width: 620px) {
-    .logo, .mangrove-graph-component {
-        display: none !important;
-    }
-    body {
-        margin: 0 !important;
-        font-size: .875rem !important;
-    }
-    p.lead {
-            margin: 0 !important;
-            font-size: .875rem !important;
-    }
-
-    #flex-container {
-        width: 100%;
-    }
-
-    div#flex-card-row {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .flex-card {
-        width: 80%;
-    }
-
-    div.flex-card-header {
-        text-align: center;
-        padding: 10px 10px;
-    }
-    
-
-    div.flex-card-body .btn {
-        margin-top: 10px;
-        padding: 5px 5px;
-    }
-
-    #learn_more {
-        max-width: .874rm;
-    }
-   
-    #learn_more, div.flex-card-body .btn {
-        padding: 10px 10px;
-        text-align: center;
-        font-size: .765rem;
-    }
-    
 }
 

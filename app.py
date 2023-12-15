@@ -1,144 +1,155 @@
-
-# Import packages
+# Imports 
 import dash
-import time
-import pandas as pd
-import dash_leaflet as dl
+import pandas as pd 
+import geopandas as gpd 
+import dash_leaflet as dl 
 import plotly.express as px
-import plotly.graph_objects as go
+from dash import Dash, html, dcc
+import dash_loading_spinners as dls 
 import dash_bootstrap_components as dbc
-from dash_spinner import DashSpinner as spinner
-from dash.dependencies import Input, Output, State
-from dash import Dash, html, dash_table, dcc, callback
+from dash.dependencies import Input, Output 
 
+# Self-defined 
 from graph import feature_plots
-from footer import footer
-from styles import (
-    h3_style,
-    footer_style, 
-    header_styles,item_styles,
-    spin_animation, 
-    spinners,
-    text_style)
-
 from maps import biomass_fig
+meta_tags = [
+            {"name": "viewport",
+            "content": "width=device-width, initial-scale=1"}
+    ]
 
-style_list = [dbc.themes.DARKLY]
+# Set up stylesheets 
+static_css = 'assets/style.css'
+stylesheets = [static_css, dbc.themes.DARKLY, dbc.icons.FONT_AWESOME]
 
-spinner =  dbc.Spinner(
-    html.Div(id = "loading-output",
-             children = [
-                 dcc.Graph(
-                     id = 'base-map',
-                     figure = biomass_fig,
-                     config = {'displayModeBar': False}
-                            )    
-                    ]), size = '30', color = "success", type = 'border', fullscreen = True
-            ),
-# Instantiate app
-app = dash.Dash(__name__, external_stylesheets = style_list, assets_folder='assets')
+# Create list of years 
+year_list = ['2000', '2020']
+
+# Instantiate app 
+app = Dash(__name__, meta_tags = meta_tags, external_stylesheets = stylesheets, use_pages = True, pages_folder = 'pages')
+
+# Set up favicon 
 app._favicon = 'assets/tracking.ico'
-server = app.server
+
+server = app.server 
+
+footer = html.Footer(
+    className = "footer-distributed",
+    children = [
+        html.Div(
+            className = "footer-left",
+            children = [
+                html.H3("Hɛn Mpoano"),
+                html.P(
+                    className = "footer-links",
+                    children = [
+                        html.A("Home", href = "https://henmpoano.org/", className="link-1", target = '_blank'),
+                        html.A("About", href = "https://henmpoano.org/what-we-do/", target = '_blank'),
+                        html.A("Projects", href = "https://henmpoano.org/projects/", target = '_blank'),
+                        html.A("News", href = "https://henmpoano.org/publications/", target = '_blank'),
+                        html.A("Contact", href = "https://henmpoano.org/contact-2/", target = '_blank'),
+                    ],
+                ),
+                html.P("Hɛn Mpoano © 2023", className = "footer-company-name"),
+                html.Br(),
+                html.P(className = 'source-code', 
+                      children = [
+                          html.Div(
+                              children = [
+                                  html.P(children = [
+                                      html.Span("Source Code:")
+                                  ]),
+                                  html.A(html.I(className = "fa-brands fa-github", id = 'git-icon'), href="https://github.com/edudzikorku/mangrove-watch.git", target = '_blank'),
+                              ],
+                          ), 
+                          ])
+            ],
+        ),
+        html.Div(
+            className = "footer-center",
+            children = [
+                html.Div(
+                    children = [
+                        html.I(className = "fas fa-location"),
+                        html.P(
+                            children = [
+                                html.Span("38 J. Cross Cole Street"),
+                                "Takoradi, Western Region, Ghana",
+                            ]
+                        ),
+                    ]
+                ),
+                html.Div(
+                    children = [
+                        html.I(className = "fa-solid fa-phone"),
+                        html.P("031 229 3869"),
+                    ]
+                ),
+                html.Div(
+                    children = [
+                        html.I(className = "fa-solid fa-envelope"),
+                        html.P(
+                            children = [
+                                html.A(
+                                    "info@henmpoano.org",
+                                    href="mailto:info@henmpoano.org",
+                                )
+                            ]
+                        ),
+                    ]
+                ),
+            ],
+        ),
+        html.Div(
+            className = "footer-right",
+            children = [
+                html.P(
+                    className = "footer-company-about",
+                    children = [
+                        html.Span("About Hɛn Mpoano"),
+                        html.P("Hen Mpoano is a not-for-profit organization legally registered in Ghana since 2013 and based in Takoradi", className = 'about-hm'),
+                        
+                    ],
+                ),
+                html.A('Read More', href = "https://henmpoano.org/"),
+                html.Div(
+                    className = "footer-icons",
+                    children = [
+                        html.A(html.I(className = "fa-brands fa-facebook"), href="https://www.facebook.com/HenMpoano/", target = '_blank'),
+                        html.A(html.I(className = "fa-brands fa-twitter"), href="https://twitter.com/henmpoano", target = '_blank'),
+                        html.A(html.I(className = "fa-brands fa-youtube"), href="https://www.youtube.com/channel/UCOpHzD15In9hfz5rAwhY2Bw", target = '_blank'),
+                        html.A(html.I(className = "fa-brands fa-linkedin"), href="https://www.linkedin.com/company/hen-mpoano/about/", target = '_blank'),
+                    ],
+                ),
+            ],
+        ),
+    ],
+)
+
+
+
+# Define navbar 
+navbar = dbc.NavbarSimple(
+    dbc.Nav(
+        
+        [
+            dbc.NavLink(page["name"], href=page["path"])
+            for page in dash.page_registry.values()
+            if page.get("top_nav")
+        ],
+    ),
+   brand = dbc.Row([
+       dbc.Col(html.Img(src = 'assets/globe.png', height = "50px", className = 'logo')),
+       dbc.Col(html.H3("Mangrove Watcher", className = 'watcher')),      
+                                    ]), 
+    color = "#001d3d",
+    dark = True,
+    className = "mb-2",
+)
+
 # Define the layout of the app
 app.layout = html.Div([
-    dcc.Location(id='url', refresh = False),   
-        dbc.NavbarSimple(
-                         brand = dbc.Row([
-                             dbc.Col(html.Img(src='assets/globe.png', height="50px", className = 'logo')),
-                             dbc.Col(html.H3("Mangrove Watcher", className = 'watcher')),
-                                    ]),     
-            children = [  
-                dbc.NavItem(dbc.NavLink("Home", href="/", className = 'local-nav-items', style = {'color':'white', 'fontFamily':
-                                                                                     'Roboto, sans-serif', 'fontSize':'16px'})),
-                dbc.NavItem(dbc.NavLink("Above-Ground Biomass", href = "/page-1", className = 'local-nav-items', style = {'color':'white', 'fontFamily':
-                                                                                     'Roboto, sans-serif', 'fontSize':'16px'})),
-                dbc.NavItem(dbc.NavLink("Carbon Stock", href = "/page-2", className = 'local-nav-items', style = {'color':'white', 'fontFamily':
-                                                                                     'Roboto, sans-serif', 'fontSize':'16px'})),
-                dbc.NavItem(dbc.NavLink("Carbon Sequestration", href = "/page-3", className = 'local-nav-items', style = {'color':'white', 'fontFamily':
-                                                                                     'Roboto, sans-serif', 'fontSize':'16px'})),
-                dbc.NavItem(dbc.DropdownMenu(
-                                [dbc.DropdownMenuItem('2000'), dbc.DropdownMenuItem('2020')],
-                                label = 'Year',
-                                nav = True,
-                                className = 'dropdown-item-year'
-                            )
-),
-        ],
-        brand_href = "/",
-        color = "#001d3d",
-        # dark = True,
-        # expand = 'lg',
-    ),
-    html.Div(id='page-content')
+    navbar, dash.page_container, footer
 ])
-
-# Define the callback to update the page content based on the URL
-@app.callback(Output('page-content', 'children'),
-              Input('url', 'pathname'))
-def display_page(pathname):
-    if pathname == '/page-1':
-        return html.Div([
-            html.Div(spinner),
-            html.Footer([footer], className = 'footers')
-        ])
-    elif pathname == '/page-2':
-        return html.Div([
-            html.Div(spinner),
-            html.Footer([footer], className = 'footers')
-        ])
-    elif pathname == '/page-3':
-        return html.Div([
-            html.Div(spinner),
-            html.Footer([footer], className = 'footers')
-        ]),
-    else:
-        return html.Div([
-            # html.Img(src='assets/mangrove-3.jpg', height='500px'),
-            dbc.Row(className = 'home-rows', children = [
-                dbc.Col([            
-                       html.Div("""
-                        Mangroves, vital coastal ecosystems teeming with biodiversity, are facing unprecedented degradation, posing a 
-                        significant threat to the well-being of both the environment and the communities dependent on them. Human 
-                        activities, ranging from urbanization and aquaculture expansion to climate change-induced phenomena, are accelerating 
-                        mangrove loss, compromising the ecological integrity of these critical zones. As mangroves decline, the repercussions 
-                        extend beyond environmental concerns to encompass socio-economic aspects, affecting the well-being of coastal populations
-                        that rely on these ecosystems for sustenance, livelihoods, and protection against natural hazards. Urgent attention is 
-                        required to address this multifaceted challenge, safeguarding not only the biodiversity and resilience of mangrove 
-                        ecosystems but also the well-being of the communities intricately linked to their existence.""",
-                     style = text_style, id = 'row-1'
-                    ),   
-                    html.Br(),
-                    html.Br(),
-                    html.Br(),
-                    html.Br(),
-                    html.A("Figure 1: Contribution of features to Above-ground biomass prediction", className = 'figure-desc'),
-                    ]
-                    ),
-                    dbc.Col(children =
-                                    [
-                                        html.Div("""
-                                            Remote sensing, coupled with machine learning algorithms, has emerged as a potent tool in estimating 
-                                            above-ground biomass (AGB) with unprecedented 
-                                            accuracy. Numerous studies have explored this intersection, leveraging datasets from platforms like Landsat and Sentinel-2, 
-                                            and employing algorithms such as Random Forest (RF), Extreme Gradient Boosting (XGBoost), and Support Vector Regression (SVR).""", 
-                                            style = text_style, id = 'row-2'),
-                                        html.Div("""
-                                            This project employs Remote Sensing and Machine Learning to address urgent mangrove degradation. Focusing on 
-                                            AGB, it integrates advanced technologies like Landsat imagery and SAR data with field inventory. The aim is 
-                                            to provide accurate insights into mangrove health, guiding targeted interventions and contributing to sustainable 
-                                            resource management. Utilizing machine learning, specifically the Random Forest model from Google Earth Engine, the 
-                                            project accurately estimates AGB, carbon stock, and carbon sequestration potential of mangroves. 
-                                            This information is crucial for identifying and addressing degradation, ultimately safeguarding the well-being 
-                                            of communities reliant on these essential coastal ecosystems.""",
-                                            style = text_style, id = 'row-3'),
-                                        
-                                            
-                                    ]
-                        )        
-           ]),
-           dcc.Graph(id = 'mangrove-graph', className = 'mangrove-graph-component', figure = feature_plots),
-           html.Footer([footer], className = 'footers')
-        ])
 
 if __name__ == '__main__':
     app.run()

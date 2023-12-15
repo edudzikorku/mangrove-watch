@@ -51,7 +51,7 @@ variable_importance_2000_sorted, variable_importance_2020_sorted, n_items_2000, 
 feature_plots = make_subplots(rows = 1,
                     cols = 3,
                     subplot_titles = ['Random Forest Feature Importance (2000)', ' ', 'Random Forest Feature Importance (2020)'],
-                    column_widths = [0.5, 0.05, 0.5],
+                    column_widths = [0.5, 0.05, 0.5]
                     )
 
 # Plot for 2000
@@ -61,7 +61,7 @@ fig1 = px.bar(variable_importance_2000_sorted,
               orientation = 'h',
               labels = {'Feature': 'Feature Importance'},
               color_discrete_sequence = ["#40916c"],
-              height = 100 + (20 * n_items_2000),
+              height = 100 + (20 * n_items_2000), 
               )
 # Update x-axis and y-axis title font size
 fig1.update_xaxes(title_font = {'size': 20})
